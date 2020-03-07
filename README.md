@@ -29,46 +29,16 @@ You can find the [original setup instructions on howchoo](https://howchoo.com/g/
 ### Setup Rasbian
 You can find instuctions on [How to set up your Raspberry Pi without a keyboard, monitor, or mouse on howchoo](https://howchoo.com/g/mzgzy2mwowj/how-to-set-up-raspberry-pi-without-keyboard-monitor-mouse).
 
-### Setup DDNS Service
-**This is extremely dangerous. Only do this if you understand the risks involved.**
-1. Go to a DDNS service provider [Dynu.com](https://www.dynu.com) is recommended
-1. Create a dynamic DNS domain with the provider
-   - Make sure you link the domain to your IPv4 and/or IPv6 address [whatismyipaddress.com](https://whatismyipaddress.com/)
-1. This domain will be used to access your garage and during the installation process
-1. Make sure that if your IP address changes that dynu.com updates the DDNS record
-   - Follow the instructions here [https://www.dynu.com/DynamicDNS/IPUpdateClient/RaspberryPi-Dynamic-DNS](https://www.dynu.com/DynamicDNS/IPUpdateClient/RaspberryPi-Dynamic-DNS)
 
-### Port Forwarding
-**This will make your network visible to the public internet.**
-**Make sure you have correctly configured your router and any firewalls.**
-- [Access your Raspberry Pi over the internet](https://www.raspberrypi.org/documentation/remote-access/access-over-Internet/README.md)
-  - You'll need to find your routers manual to learn how to configure port fowarding to **Port 443 and Port 80** on your Pi.
-**You need to forward external ports 443 and 80 to internal ports 443 and 80 respectively**
-
-### Install Garage-Pi-v2 From Repository (faster)
+### Install Garage-Pi-v3 From Repository (faster)
 1. Open up a terminal
 1. ssh into your Pi
    - ```ssh pi@192.168.1.1```
    - Use the IP address of your Pi
    - default password is "raspberry"
 1. Download Docker & Garage-Pi by running
-   - ```bash <(curl -s https://raw.githubusercontent.com/kylejramstad/garage-pi-v2/master/scripts/download.sh)```
+   - ```sudo git clone https://github.com/TJJP/garage-pi-v2.git```
 
-### Building Garage-Pi-v2 From Source (longer)
-**Don't do this step if you installed Garage-Pi-v2 from repository**
-1. Open up a terminal
-1. ssh into your Pi
-   - ```ssh pi@192.168.1.1```
-   - Use the IP address of your Pi
-   - default password is "raspberry"
-1. Install docker
-   - ```curl -sSL https://get.docker.com | sh```
-   - This will run the install script right from docker.com
-1. Copy the source files to the Pi from Github
-   - ```sudo git clone https://github.com/kylejramstad/garage-pi-v2.git```
-1. Build the Docker Image
-   - ```sudo ./garage-pi-v2/scripts/build.sh --setup```
-   - This may take some time (about 60 minutes)
    
 ## First Time Use
 1. Open a web browser to the domain you setup
