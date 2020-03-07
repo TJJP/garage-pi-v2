@@ -39,7 +39,7 @@ This project does not need to have port fowarding to work! It uses telebit!
    - Use the IP address of your Pi
    - default password is "raspberry"
 1. Garage-Pi & pm2 & telebit by running
-   - ```bash <(curl -s https://raw.githubusercontent.com/kylejramstad/garage-pi-v2/master/scripts/download.sh)```
+   - ```bash <(curl -s https://raw.githubusercontent.com/TJJP/garage-pi-v3/master/scripts/download.sh)```
 
    
 ## First Time Use
