@@ -42,19 +42,19 @@ This project does not need to have port fowarding to work! It uses telebit!
    - default password is "raspberry"
 1. Garage-Pi & pm2 & telebit by running
    - ```sudo git clone https://github.com/TJJP/garage-pi-v3.git
-            ```cd ./garage-pi-v3
-         ```   npm install
-         ```   sudo npx webpack --config webpack.config.js
-          ```  sudo nano ecosystem.config.js
-        ```    sudo su
-            ```sudo npm i -g pm2
-            ```exit
-            ```cd ./garage-pi-v3
-            ```sudo pm2 startup
-            ```sudo pm2 start ecosystem.config.js
-            ```sudo su
-            ```curl -fsSL https://get.telebit.io/ | bash
-            ```~/telebit http 7119
+           cd ./garage-pi-v3
+           npm install
+           sudo npx webpack --config webpack.config.js
+           sudo nano ecosystem.config.js
+           sudo su
+           sudo npm i -g pm2
+           exit
+           cd ./garage-pi-v3
+           sudo pm2 startup
+           sudo pm2 start ecosystem.config.js
+           sudo su
+           curl -fsSL https://get.telebit.io/ | bash
+           ~/telebit http 7119
             ```
 
 
