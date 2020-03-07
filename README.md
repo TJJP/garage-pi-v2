@@ -1,4 +1,4 @@
-# garage-pi-v2
+# garage-pi-v3
 
 Control your garage door using a web application running on your Raspberry Pi.
 
@@ -15,7 +15,7 @@ Control your garage door using a web application running on your Raspberry Pi.
 - [x] Buster
 
 
-## Setup for V2
+## Setup for V3
 
 ### Wiring
 You can find the [original setup instructions on howchoo](https://howchoo.com/g/yznmzmuxywu/how-to-control-your-garage-door-from-your-phone-using-a-raspberry-pi). These instructions will show you how to wire your Pi and how to install the original Garage-Pi.
