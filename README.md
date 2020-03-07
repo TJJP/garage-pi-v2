@@ -1,5 +1,7 @@
 # garage-pi-v3
 
+!!!!!!!!!!!!!STILL IN NOT COMPLETE THE SETUP WILL NOT RUN.!!!!!!!!!!!!!!!
+
 Control your garage door using a web application running on your Raspberry Pi.
 
 ## Compatibility
