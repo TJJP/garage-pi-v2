@@ -1,3 +1,4 @@
+
 'use strict';
 
 const express = require('express');
@@ -49,8 +50,8 @@ app.use(session({
 	resave: true,
 	saveUninitialized: false,
 	cookie: { 
-		secure: true,
-		httpOnly: true,
+		secure: false,
+		httpOnly: false,
 		maxAge: 31536000000
 	}
 }));
@@ -59,15 +60,15 @@ app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 
 // Authentication and Authorization Middleware //Also forces https
 var auth = function(req, res, next) {
-	if(!req.secure) {
-    	return res.redirect(['https://', req.get('Host'), req.baseUrl].join(''));
-  	}
-  	else{
+//	if(!req.secure) {
+    //	return res.redirect(['https://', req.get('Host'), req.baseUrl].join(''));
+  //	}
+  //	else{
 		if (req.session && req.session.admin) //if signed in then continue
 			return next();
 		else
 			return res.redirect('/login'); //redirect to login page
-  	}
+  //	}
 };
 
 
@@ -94,7 +95,7 @@ function startPins(){
 
 	rpio.open(openPin, rpio.INPUT, rpio.PULL_UP);
 	rpio.open(closePin, rpio.INPUT, rpio.PULL_UP);
-	rpio.open(relayPin, rpio.OUTPUT, rpio.HIGH);
+	rpio.open(relayPin, rpio.OUTPUT, rpio.LOW);
 }
 
 function setPins(open,close,relay){
@@ -104,7 +105,7 @@ function setPins(open,close,relay){
 }
 
 function getScripts(){
-	var startPath = "/code/assets";
+	var startPath = "./assets";
 	var filter = "bundle.js"
     var results = [];
 
@@ -122,7 +123,7 @@ function getScripts(){
         }
         else if (filename.indexOf(filter)>=0) {
             //console.log('-- found: ',filename);
-            filename = filename.slice(5);
+            filename = "/" + filename;
             results.push(filename);
         }
     }
@@ -496,9 +497,9 @@ function getState() {
 
 function buttonPress(){
 	clearInterval(check); //Stop checking for button because this was not a button push
-	rpio.write(relayPin, rpio.LOW);
+	rpio.write(relayPin, rpio.HIGH);
 	setTimeout(function() {
-		rpio.write(relayPin, rpio.HIGH);
+		rpio.write(relayPin, rpio.LOW);
 		buttonCheck(); //Start checking again
 	}, 1000);
 }
@@ -571,15 +572,6 @@ app.use(function(req, res, next){
 });
 
 //Start HTTP App
-http.createServer(app).listen(80, () => {
+http.createServer(app).listen(7119, () => {
   console.log('Listening...');
-});
-
-//Start App with HTTPS
-https.createServer({
-  key: fs.readFileSync('tls/privkey.pem'),
-  cert: fs.readFileSync('tls/fullchain.pem')
-}, app).listen(443, () => {
-  console.log('Listening...');
-  console.log('Version: ' + process.env.npm_package_version);
 });
