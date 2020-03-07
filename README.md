@@ -29,6 +29,8 @@ You can find the [original setup instructions on howchoo](https://howchoo.com/g/
 ### Setup Rasbian
 You can find instuctions on [How to set up your Raspberry Pi without a keyboard, monitor, or mouse on howchoo](https://howchoo.com/g/mzgzy2mwowj/how-to-set-up-raspberry-pi-without-keyboard-monitor-mouse).
 
+### NO port forwarding!!!
+This project does not need to have port fowarding to work! It uses telebit!
 
 ### Install Garage-Pi-v3 From Repository (faster)
 1. Open up a terminal
@@ -36,7 +38,7 @@ You can find instuctions on [How to set up your Raspberry Pi without a keyboard,
    - ```ssh pi@192.168.1.1```
    - Use the IP address of your Pi
    - default password is "raspberry"
-1. Download Docker & Garage-Pi by running
+1. Garage-Pi & pm2 & telebit by running
    - ```bash <(curl -s https://raw.githubusercontent.com/kylejramstad/garage-pi-v2/master/scripts/download.sh)```
 
    
