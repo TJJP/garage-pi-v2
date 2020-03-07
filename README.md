@@ -1,4 +1,4 @@
-# garage-pi-v2
+# garage-pi-v3
 
 Control your garage door using a web application running on your Raspberry Pi.
 
