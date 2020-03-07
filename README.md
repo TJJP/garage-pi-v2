@@ -37,7 +37,7 @@ You can find instuctions on [How to set up your Raspberry Pi without a keyboard,
    - Use the IP address of your Pi
    - default password is "raspberry"
 1. Download Docker & Garage-Pi by running
-   - ```sudo git clone https://github.com/TJJP/garage-pi-v2.git```
+   - ```bash <(curl -s https://raw.githubusercontent.com/kylejramstad/garage-pi-v2/master/scripts/download.sh)```
 
    
 ## First Time Use
