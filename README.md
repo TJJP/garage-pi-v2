@@ -1,4 +1,4 @@
-# Garage-Pi-v2
+# Garage-Pi-v3
 
 Control your garage door using a secure web application running on your Raspberry Pi.
 
