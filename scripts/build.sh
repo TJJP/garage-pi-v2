@@ -11,11 +11,11 @@ print_help () {
 
 build (){
 	cd ./garage-pi-v3
-	sudo docker build -t TJJP/garage-pi-v3 .
+	sudo docker build -t tjjp/garage-pi-v3 .
 }
 
 setup (){
-	sudo docker run -v /etc/timezone:/etc/timezone --restart=always --device=/dev/mem:/dev/mem --name=garage-pi --privileged --publish 443:443 --publish 80:80 -d TJJP/garage-pi-v3
+	sudo docker run -v /etc/timezone:/etc/timezone --restart=always --device=/dev/mem:/dev/mem --name=garage-pi --privileged --publish 443:443 --publish 80:80 -d tjjp/garage-pi-v3
 	sudo docker exec -i garage-pi certbot certonly --webroot -w /code/tls -n --domains $d --agree-tos --email $e
 	sudo docker exec -i garage-pi sudo rm /code/tls/fullchain.pem
 	sudo docker exec -i garage-pi sudo rm /code/tls/privkey.pem
@@ -69,6 +69,6 @@ if [ "$1" == "--no-cert" ] || [ "$1" == "-n" ]
 		echo "You will have to import your own certs to the docker containers /code/tls folder"
 		verify
 		build
-		sudo docker run -v /etc/timezone:/etc/timezone --restart=always --device=/dev/mem:/dev/mem --name=garage-pi --privileged --publish 443:443 --publish 80:80 -d TJJP/garage-pi-v3
+		sudo docker run -v /etc/timezone:/etc/timezone --restart=always --device=/dev/mem:/dev/mem --name=garage-pi --privileged --publish 443:443 --publish 80:80 -d tjjp/garage-pi-v3
 		exit 0
 fi
