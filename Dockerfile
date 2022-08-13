@@ -11,6 +11,6 @@ WORKDIR /code
 COPY . /code
 
 # Install
-RUN ./scripts/install.sh
+RUN sh ./scripts/install.sh
 
 CMD ["npm", "start"]
