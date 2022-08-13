@@ -62,7 +62,7 @@ app.use(function(req, res, next){
 });
 
 //Start HTTP Server for TLS verification
-http.createServer(app).listen(80, () => {
+http.createServer(app).listen(7118, () => {
   console.log('Listening...');
 });
 
@@ -70,7 +70,7 @@ http.createServer(app).listen(80, () => {
 spdy.createServer({
   key: fs.readFileSync('tls/privkey.pem'),
   cert: fs.readFileSync('tls/fullchain.pem')
-}, app).listen(443, () => {
+}, app).listen(7119, () => {
   console.log('Listening...');
   console.log('Version: ' + process.env.npm_package_version);
 });
