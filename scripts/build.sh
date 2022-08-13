@@ -3,19 +3,19 @@
 print_help () {
 	echo "usage: build.sh [options]"
 	echo "	options:"
-	echo "		-d, --distro		Create a Garage-Pi-v2 image for distribution"
+	echo "		-d, --distro		Create a Garage-Pi-v3 image for distribution"
 	echo "		-h, --help		Display this help message"
-	echo "		-s, --setup		Setup Garage-Pi-v2"
-	echo "		-n, --no-cert		Setup Garage-Pi-v2 without certificates"
+	echo "		-s, --setup		Setup Garage-Pi-v3"
+	echo "		-n, --no-cert		Setup Garage-Pi-v3 without certificates"
 }
 
 build (){
-	cd ./garage-pi-v2
-	sudo docker build -t bugman000/garage-pi-v2 .
+	cd ./garage-pi-v3
+	sudo docker build -t TJJP/garage-pi-v3 .
 }
 
 setup (){
-	sudo docker run -v /etc/timezone:/etc/timezone --restart=always --device=/dev/mem:/dev/mem --name=garage-pi --privileged --publish 443:443 --publish 80:80 -d bugman000/garage-pi-v2
+	sudo docker run -v /etc/timezone:/etc/timezone --restart=always --device=/dev/mem:/dev/mem --name=garage-pi --privileged --publish 443:443 --publish 80:80 -d TJJP/garage-pi-v3
 	sudo docker exec -i garage-pi certbot certonly --webroot -w /code/tls -n --domains $d --agree-tos --email $e
 	sudo docker exec -i garage-pi sudo rm /code/tls/fullchain.pem
 	sudo docker exec -i garage-pi sudo rm /code/tls/privkey.pem
@@ -69,6 +69,6 @@ if [ "$1" == "--no-cert" ] || [ "$1" == "-n" ]
 		echo "You will have to import your own certs to the docker containers /code/tls folder"
 		verify
 		build
-		sudo docker run -v /etc/timezone:/etc/timezone --restart=always --device=/dev/mem:/dev/mem --name=garage-pi --privileged --publish 443:443 --publish 80:80 -d bugman000/garage-pi-v2
+		sudo docker run -v /etc/timezone:/etc/timezone --restart=always --device=/dev/mem:/dev/mem --name=garage-pi --privileged --publish 443:443 --publish 80:80 -d TJJP/garage-pi-v3
 		exit 0
 fi
