@@ -44,11 +44,11 @@ You will need to be comfortable using wire strippers in order to install the har
 #### Garage Door Opener
 First we will connect the Raspberry Pi to the garage door opener. Find the correct connections for your garage door opener. You can find them by tracing the wires from your wall mounted button to the opener. See the picture below.
 
-![garage door wires](https://raw.githubusercontent.com/kylejramstad/garage-pi-v2/master/assets/readme_pictures/garage-door-opener.jpg)
+![garage door wires](https://raw.githubusercontent.com/TJJP/garage-pi-v3/master/assets/readme_pictures/garage-door-opener.jpg)
 
 Attach wires from the garage door opener to your relay.
 
-![door to relay](https://raw.githubusercontent.com/kylejramstad/garage-pi-v2/master/assets/readme_pictures/Open%20Relay.png)
+![door to relay](https://raw.githubusercontent.com/TJJP/garage-pi-v3/master/assets/readme_pictures/Open%20Relay.png)
 
 #### Connect Relay to Raspberry Pi
 
@@ -56,20 +56,20 @@ Attach wires from the garage door opener to your relay.
 - Connect the ground pin on the relay to pin 6 on the Raspberry Pi (ground).
 - Connect IN1 pin on the relay to pin 11 on the Raspberry Pi (GPIO).
 
-![relay to pi](https://raw.githubusercontent.com/kylejramstad/garage-pi-v2/master/assets/readme_pictures/relay%20pi.png)
+![relay to pi](https://raw.githubusercontent.com/TJJP/garage-pi-v3/master/assets/readme_pictures/relay%20pi.png)
 
 #### Place and Connect Sensors to Raspberry Pi
 
 **Close your garage door** and then find a place on the garage door frame where you can attach one of the magnetic reed switches. Attach the side with the wire connections to the frame using tape/screws/nails, and then connect the magnet half to the actual garage door. Make sure that when you open and close the garage door, the reed switches don't get knocked off.
 
-![door sensor](https://raw.githubusercontent.com/kylejramstad/garage-pi-v2/master/assets/readme_pictures/close.jpg)
+![door sensor](https://raw.githubusercontent.com/TJJP/garage-pi-v3/master/assets/readme_pictures/close.jpg)
 
 - Attach a wire from the NC connection on the magnetic reed switch to pin 13 on the Raspberry Pi (GPIO)
 - Attach a wire from the COM/Ground connection on the magnetic reed switch to pin 14 on the Raspberry Pi (ground)
 
 **Open your garage door** and then find a place on the garage door grame where you can attach the second magnetic reed switch. Attach the side with the wire connections to the frame using tape/screws/nails, and then connect the magnet half to the actual garage door. If you have a wooden garage door, then you may find it easier to attach near the top of the frame. If you have a sectional/roll-up garage door, then you may find it easier to attach this to the metal structure near the ceiling.
 
-![door sensor](https://raw.githubusercontent.com/kylejramstad/garage-pi-v2/master/assets/readme_pictures/open.jpg)
+![door sensor](https://raw.githubusercontent.com/TJJP/garage-pi-v3/master/assets/readme_pictures/open.jpg)
 
 - Attach a wire from the NC connection on the magnetic reed switch to pin 19 on the Raspberry Pi (GPIO)
 - Attach a wire from the COM/Ground connection on the magnetic reed switch to pin 20 on the Raspberry Pi (ground)
@@ -84,7 +84,7 @@ The open sensor, close sensor, and relay can be wired to the following physical 
    - Relay - Pin 11
 
 #### Full Wire Diagram
-![Wire Diagram](https://raw.githubusercontent.com/kylejramstad/garage-pi-v2/master/assets/readme_pictures/Diagram.png)
+![Wire Diagram](https://raw.githubusercontent.com/TJJP/garage-pi-v3/master/assets/readme_pictures/Diagram.png)
 
 ### Setup DDNS Service
 **This is extremely dangerous. Only do this if you understand the risks involved.**
@@ -103,9 +103,9 @@ The open sensor, close sensor, and relay can be wired to the following physical 
 **You need to forward external ports 443 and 80 to internal ports 443 and 80 respectively**
 
 ### Installing Software
-You have two options for install the Garage-Pi-v2 Software. It is recommended that you build the software from source. This will ensure that any small changes made to your raspberry pi's setup and OS are accounted for when the software is setup.
+You have two options for install the Garage-Pi-v3 Software. It is recommended that you build the software from source. This will ensure that any small changes made to your raspberry pi's setup and OS are accounted for when the software is setup.
 
-#### Building Garage-Pi-v2 From Source (recommended but slower)
+#### Building Garage-Pi-v3 From Source (recommended but slower)
 1. Open up a terminal
 1. ssh into your Pi
    - ```ssh pi@192.168.1.1```
@@ -116,20 +116,20 @@ You have two options for install the Garage-Pi-v2 Software. It is recommended th
    - This will run the install script right from docker.com
 1. Copy the source files to the Pi from Github
    - ```sudo apt-get -y install git```
-   - ```sudo git clone https://github.com/kylejramstad/garage-pi-v2.git```
+   - ```sudo git clone https://github.com/TJJP/garage-pi-v3.git```
 1. Build the Docker Image
-   - ```sudo ./garage-pi-v2/scripts/build.sh --setup```
+   - ```sudo ./garage-pi-v3/scripts/build.sh --setup```
    - This may take some time. Be patient.
 
-#### Install Garage-Pi-v2 From Repository (faster)
-**Don't do this step if you installed Garage-Pi-v2 by Building from source**
+#### Install Garage-Pi-v3 From Repository (faster)
+**Don't do this step if you installed Garage-Pi-v3 by Building from source**
 1. Open up a terminal
 1. ssh into your Pi
    - ```ssh pi@192.168.1.1```
    - Use the IP address of your Pi
    - default password is "raspberry"
 1. Download Docker & Garage-Pi by running
-   - ```bash <(curl -s https://raw.githubusercontent.com/kylejramstad/garage-pi-v2/master/scripts/download.sh)```
+   - ```bash <(curl -s https://raw.githubusercontent.com/TJJP/garage-pi-v3/master/scripts/download.sh)```
    
 ## First Time Use
 1. Open a web browser to the domain you setup
