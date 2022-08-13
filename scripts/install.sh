@@ -26,6 +26,7 @@ sudo apk add certbot -f
 # Without rpio this project doesn't work
 sudo apk add python-setuptools -f
 sudo apk add build-essential -f
+sudo npm install make
 sudo npm install rpio
 
 # git used for updating
