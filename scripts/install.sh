@@ -6,31 +6,31 @@ cd /code
 apk update
 
 # install sudo
-apk add sudo -f
+apk add sudo 
 
 # Time settings
-apk add curl -f
+apk add curl
 sudo ln -snf /usr/share/zoneinfo/$(curl https://ipapi.co/timezone) /etc/localtime
-sudo apk add tzdata -f
+sudo apk add tzdata
 
 # install nano for crontab editing
-sudo apk add nano -f
+sudo apk add nano
 
 #Install certbot and cron
-sudo apk add cron -f
-sudo apk add certbot -f
+sudo apk add cron
+sudo apk add certbot
 
 # Python and pip
 # This is the biggest part and takes a long time...
 # Needed to install node-gyp which is needed for rpio
 # Without rpio this project doesn't work
-sudo apk add python-setuptools -f
-sudo apk add build-essential -f
+sudo apk add python-setuptools
+sudo apk add build-essential
 sudo npm install make
 sudo npm install rpio
 
 # git used for updating
-sudo apk add git -f
+sudo apk add git
 
 # Installs all modules in package.json and checks for security issues and fix them
 sudo npm install
