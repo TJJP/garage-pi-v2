@@ -6,7 +6,7 @@ cd /code
 apk update
 
 # install sudo
-apk add sudo -f
+apk add sudo
 
 # Time settings
 apk add curl -f
@@ -26,6 +26,7 @@ sudo apk add certbot -f
 # Without rpio this project doesn't work
 sudo apk add python-setuptools -f
 sudo apk add build-essential -f
+sudo npm install make
 sudo npm install rpio
 
 # git used for updating
