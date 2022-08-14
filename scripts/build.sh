@@ -16,12 +16,6 @@ build (){
 
 setup (){
 	sudo docker run -v /etc/timezone:/etc/timezone --restart=always --device=/dev/mem:/dev/mem --name=garage-pi --privileged --publish 7119:7119 --publish 7118:7118 -d tjjp/garage-pi-v3
-	sudo docker exec -i garage-pi certbot certonly --webroot -w /code/tls -n --domains $d --agree-tos --email $e
-	sudo docker exec -i garage-pi sudo rm /code/tls/fullchain.pem
-	sudo docker exec -i garage-pi sudo rm /code/tls/privkey.pem
-	sudo docker exec -i garage-pi ln -s /etc/letsencrypt/live/$d/fullchain.pem /code/tls/fullchain.pem
-	sudo docker exec -i garage-pi ln -s /etc/letsencrypt/live/$d/privkey.pem /code/tls/privkey.pem
-	sudo docker exec garage-pi crontab /etc/cron.d/certbot
 	sudo crontab -l 2>/dev/null; echo -e  "0 2 * * 3 sudo docker exec -t garage-pi /code/scripts/update.sh && sudo docker container restart garage-pi >/dev/null 2>&1" | sudo crontab -
 	sudo docker container restart garage-pi
 }
@@ -57,8 +51,6 @@ fi
 if [ "$1" == "--setup" ] || [ "$1" == "-s" ]
 	then
 		verify
-		read -p 'Enter your DDNS Domain (e.g. garage-example.dynu.net): ' d
-		read -p 'Enter your email address (this is sent to LetsEncrypt only): ' e
 		build
 		setup
 		exit 0

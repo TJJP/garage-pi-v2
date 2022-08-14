@@ -9,7 +9,6 @@ const fs = require('fs');
 const helmet = require('helmet');
 const http = require('http');
 const nocache = require("nocache");
-const spdy = require('spdy');
 
 const databaseController = require('./controllers/databaseController.js');
 
@@ -54,23 +53,13 @@ app.use('/settings', settings);
 
 //Start the app and server//
 app.use('/assets', express.static('assets')); //give pages access to the assets folder for JS and CSS files
-app.use(express.static(__dirname + '/tls', { dotfiles: 'allow' } )); //Allows for CertBot to do automatic authentication
 
 //To catch all false routes and redirect them back to the home page
 app.use(function(req, res, next){
 	res.status(404).redirect('/');
 });
 
-//Start HTTP Server for TLS verification
-http.createServer(app).listen(7118, () => {
-  console.log('Listening...');
-});
-
-//Start App with HTTPS
-spdy.createServer({
-  key: fs.readFileSync('tls/privkey.pem'),
-  cert: fs.readFileSync('tls/fullchain.pem')
-}, app).listen(7119, () => {
+http.createServer(app).listen(7119, () => {
   console.log('Listening...');
   console.log('Version: ' + process.env.npm_package_version);
 });
