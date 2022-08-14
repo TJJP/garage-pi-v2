@@ -61,6 +61,6 @@ if [ "$1" == "--no-cert" ] || [ "$1" == "-n" ]
 		echo "You will have to import your own certs to the docker containers /code/tls folder"
 		verify
 		build
-		sudo docker run -v /etc/timezone:/etc/timezone --restart=always --device=/dev/mem:/dev/mem --name=garage-pi --privileged --publish 443:443 --publish 80:80 -d tjjp/garage-pi-v3
+		sudo docker run -v /etc/timezone:/etc/timezone --restart=always --device=/dev/mem:/dev/mem --name=garage-pi --privileged --publish 7119:7119 -d tjjp/garage-pi-v3
 		exit 0
 fi
