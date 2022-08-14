@@ -35,7 +35,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/kylejramstad/garage-pi-v2.0.git"
+    "url": "git+https://github.com/tjjp/garage-pi-v3.git"
   },
   "keywords": [
     "garage",
@@ -44,7 +44,7 @@
   ],
   "license": "GPL-3.0-or-later",
   "bugs": {
-    "url": "https://github.com/kylejramstad/garage-pi-v2.0/issues"
+    "url": "https://github.com/tjjp/garage-pi-v3/issues"
   },
-  "homepage": "https://github.com/kylejramstad/garage-pi-v2.0#readme"
+  "homepage": "https://github.com/tjjp/garage-pi-v3#readme"
 }
