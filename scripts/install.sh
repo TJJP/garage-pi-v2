@@ -10,7 +10,7 @@ apk update
 apk add sudo
 
 # Time settings
-apk add curl
+sudo apk add curl
 sudo ln -snf /usr/share/zoneinfo/$(curl https://ipapi.co/timezone) /etc/localtime
 sudo apk add tzdata
 
@@ -29,7 +29,6 @@ sudo npm install rpio
 sudo apk add git
 
 # Installs all modules in package.json and checks for security issues and fixes them
-sudo npx browserslist@latest --update-db
 sudo npm install
 sudo npm audit fix
 sudo npm fund
