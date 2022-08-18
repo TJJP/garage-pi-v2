@@ -97,9 +97,9 @@ const relay = function(req, res) {   //Open or Close garage with the relay
 
 function buttonPress(){
 	clearInterval(check); //Stop checking for button because this was not a button push
-	rpio.write(pinsController.getRelayPin(), rpio.LOW);
+	rpio.write(pinsController.getRelayPin(), rpio.HIGH);
 	setTimeout(function() {
-		rpio.write(pinsController.getRelayPin(), rpio.HIGH);
+		rpio.write(pinsController.getRelayPin(), rpio.LOW);
 		buttonCheck(); //Start checking again
 	}, 1000);
 }

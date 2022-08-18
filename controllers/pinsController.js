@@ -69,7 +69,7 @@ function startPins(){
 		
 	rpio.open(openPin, rpio.INPUT, rpio.PULL_UP);
 	rpio.open(closePin, rpio.INPUT, rpio.PULL_UP);
-	rpio.open(relayPin, rpio.OUTPUT, rpio.HIGH);
+	rpio.open(relayPin, rpio.OUTPUT, rpio.LOW);
 }
 
 function setPins(open,close,relay){
