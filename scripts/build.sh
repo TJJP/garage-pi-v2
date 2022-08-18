@@ -16,7 +16,7 @@ build (){
 
 setup (){
 	sudo docker run -v /etc/timezone:/etc/timezone --restart=always --device=/dev/mem:/dev/mem --name=garage-pi --privileged --publish 7119:7119 -v /var/garage-pi/databases/:/code/databases/ -d tjjp/garage-pi-v3
-	(sudo crontab -l ; echo -e "\n# Update garage-pi from lastest version in git \n0 4 * * 1 sudo docker exec -t garage-pi /code/scripts/update.sh && sudo docker container restart garage-pi >/dev/null 2>&1") 2>&1 | grep -v "no crontab" | uniq | sudo crontab -
+	sudo crontab -l | grep '0 4 \* \* 1 sudo docker exec -t garage-pi /code/scripts/update.sh && sudo docker container restart garage-pi >/dev/null 2>&1' || (sudo crontab -l ; echo -e "\n# Update garage-pi from lastest version in git \n0 4 * * 1 sudo docker exec -t garage-pi /code/scripts/update.sh && sudo docker container restart garage-pi >/dev/null 2>&1") 2>&1 | grep -v "no crontab" | uniq | sudo crontab -
 	sudo docker container restart garage-pi
 }
 
