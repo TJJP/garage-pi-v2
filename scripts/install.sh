@@ -31,5 +31,4 @@ sudo apk add git
 # Installs all modules in package.json and checks for security issues and fixes them
 sudo npm install
 sudo npm audit fix
-sudo npm fund
 sudo npx webpack --config webpack.config.js
