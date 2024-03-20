@@ -36,4 +36,4 @@ jobs:
     - name: Run Buildx (push image)
       if: success()      
       run: |        
-        docker buildx build --platform ${DOCKER_TARGET_PLATFORM} --file ./Dockerfile --tag ${DOCKER_IMAGE}:$(date +%s) .
+        docker buildx build --platform ${DOCKER_TARGET_PLATFORM} --file ./Dockerfile --tag ${DOCKER_IMAGE}:$(date +%s) --output type=image,push=true .
