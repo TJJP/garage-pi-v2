@@ -51,7 +51,7 @@ jobs:
     - name: Set up Docker Buildx      
       uses: docker/setup-buildx-action@v3    
       with:        
-        buildx-version: latest 
+        version: latest 
   
     - name: Build and push by digest
       id: build
