@@ -11,30 +11,29 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
-      
-    # steps:
-    # - uses: actions/checkout@v3
-    # - name: Build the Docker image
-    #   run: docker build . --file Dockerfile --tag garage-pi-v3:$(date +%s)
-      
-    env:      
+    
+    env:
+      DOCKER_IMAGE: tjjp/garage-pi-v3
+      DOCKER_REGISTRY: docker.io
+      DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+      DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }} 
       DOCKER_TARGET_PLATFORM: linux/arm/v6
-  
+      
     steps:
+    - name: Docker Login      
+      if: success()      
+      run: |        
+        echo "${DOCKER_PASSWORD}" | docker login ${DOCKER_REGISTRY} --username "${DOCKER_USERNAME}" --password-stdin
+
     - name: Checkout the code       
-      uses: actions/checkout@v1              
+      uses: actions/checkout@v3 
+      
     - name: Set up Docker Buildx      
       uses: crazy-max/ghaction-docker-buildx@v1      
       with:        
-        version: latest        
-    - name: Prepare      
-      if: success()      
-      id: prepare      
-      run: |        
-        echo ::set-output name=docker_platform::${DOCKER_TARGET_PLATFORM}        
-        echo ::set-output name=docker_image::${DOCKER_REGISTRY}/${DOCKER_IMAGE}        
-        echo ::set-output name=version::${GITHUB_RUN_NUMBER}                    
+        version: latest 
+  
     - name: Run Buildx (push image)
       if: success()      
       run: |        
-        docker buildx build --platform ${{ steps.prepare.outputs.docker_platform }} --file ./Dockerfile --tag garage-pi-v3:$(date +%s) .
+        docker buildx build --platform ${{ steps.prepare.outputs.docker_platform }} --file ./Dockerfile --tag ${{ steps.prepare.outputs.docker_image }}:$(date +%s) .
