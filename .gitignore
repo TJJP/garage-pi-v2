@@ -6,3 +6,7 @@ node_modules
 
 #Don't keep these
 notes
+
+# Only for running the app
+databases
+sessions
