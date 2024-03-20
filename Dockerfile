@@ -14,4 +14,8 @@ COPY . /code
 RUN apk add --update bash
 RUN sh ./scripts/install.sh
 
+# Expose Port
+EXPOSE 7119
+
+# Run server
 CMD ["npm", "start"]
