@@ -1,4 +1,4 @@
-# Garage-Pi-v3
+# Garage-Pi-v3 [![Docker Image CI](https://github.com/TJJP/garage-pi-v3/actions/workflows/docker-image.yml/badge.svg?branch=latest)](https://github.com/TJJP/garage-pi-v3/actions/workflows/docker-image.yml)
 
 Control your garage door using a secure web application running on your Raspberry Pi.
 
