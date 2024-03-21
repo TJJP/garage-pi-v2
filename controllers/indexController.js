@@ -4,8 +4,8 @@ const path = require('path');
 const fs = require('fs');
 
 function getScripts(){
-	var startPath = "/code/assets";
-	var filter = ".js"
+	var startPath = "./assets";
+	var filter = ".js";
     var results = [];
 
     if (!fs.existsSync(startPath)){
@@ -21,8 +21,7 @@ function getScripts(){
             //results = results.concat(findFilesInDir(filename,filter)); //recurse
         }
         else if (filename.indexOf(filter)>=0 && filename.slice(-2) == 'js') {
-            //console.log('-- found: ',filename);
-            filename = filename.slice(5);
+            // console.log('-- found: ',filename);
             results.push(filename);
         }
     }

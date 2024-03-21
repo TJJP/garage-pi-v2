@@ -15,8 +15,8 @@ build (){
 }
 
 setup (){
-	sudo docker run -v /etc/timezone:/etc/timezone --restart=always --device=/dev/mem:/dev/mem --name=garage-pi --privileged --publish 7119:7119 -v /var/garage-pi/databases/:/code/databases/ -d tjjp/garage-pi-v3
-	sudo crontab -l | grep '0 4 \* \* 1 sudo docker exec -t garage-pi /code/scripts/update.sh && sudo docker container restart garage-pi >/dev/null 2>&1' || (sudo crontab -l ; echo -e "\n# Update garage-pi from lastest version in git \n0 4 * * 1 sudo docker exec -t garage-pi /code/scripts/update.sh && sudo docker container restart garage-pi >/dev/null 2>&1") 2>&1 | grep -v "no crontab" | uniq | sudo crontab -
+	sudo docker run -v /etc/timezone:/etc/timezone --restart=always --device=/dev/mem:/dev/mem --name=garage-pi --privileged --publish 7119:7119 -v /var/garage-pi/databases/:/app/databases/ -d tjjp/garage-pi-v3
+	sudo crontab -l | grep '0 4 \* \* 1 sudo docker exec -t garage-pi /app/scripts/update.sh && sudo docker container restart garage-pi >/dev/null 2>&1' || (sudo crontab -l ; echo -e "\n# Update garage-pi from lastest version in git \n0 4 * * 1 sudo docker exec -t garage-pi /app/scripts/update.sh && sudo docker container restart garage-pi >/dev/null 2>&1") 2>&1 | grep -v "no crontab" | uniq | sudo crontab -
 	sudo docker container restart garage-pi
 }
 
@@ -58,9 +58,9 @@ fi
 
 if [ "$1" == "--no-cert" ] || [ "$1" == "-n" ]
 	then
-		echo "You will have to import your own certs to the docker containers /code/tls folder"
+		echo "You will have to import your own certs to the docker containers /app/tls folder"
 		verify
 		build
-		sudo docker run -v /etc/timezone:/etc/timezone --restart=always --device=/dev/mem:/dev/mem --name=garage-pi --privileged --publish 7119:7119  -v /var/garage-pi/databases/:/code/databases/ -d tjjp/garage-pi-v3
+		sudo docker run -v /etc/timezone:/etc/timezone --restart=always --device=/dev/mem:/dev/mem --name=garage-pi --privileged --publish 7119:7119  -v /var/garage-pi/databases/:/app/databases/ -d tjjp/garage-pi-v3
 		exit 0
 fi

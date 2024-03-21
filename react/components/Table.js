@@ -1,6 +1,6 @@
 import React from 'react';
+import { styled } from '@mui/material/styles';
 import PropTypes from 'prop-types';
-import { makeStyles, useTheme } from '@mui/material/styles';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -13,17 +13,29 @@ import IconButton from '@mui/material/IconButton';
 import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 
-const useStyles1 = makeStyles(theme => ({
-  root: {
+const PREFIX = 'Table';
+
+const classes = {
+  root: `${PREFIX}-root`,
+  button: `${PREFIX}-button`
+};
+
+const StyledTableContainer = styled(TableContainer)((
+  {
+    theme
+  }
+) => ({
+  [`& .${classes.root}`]: {
     flexShrink: 0,
   },
-  button: {
+
+  [`& .${classes.button}`]: {
 	  padding: '0px',
-  },
+  }
 }));
 
 function TablePaginationActions(props) {
-  const classes = useStyles1();
+
   const theme = useTheme();
   const { count, page, rowsPerPage, onPageChange } = props;
 
@@ -59,29 +71,12 @@ TablePaginationActions.propTypes = {
   rowsPerPage: PropTypes.number.isRequired,
 };
 
-const useStyles2 = makeStyles({
-  table: {
-    maxWidth: 500,
-  },
-  nav: {
-  	overflow: "visible",
-  },
-  tablecell: {
-    fontSize: "0.5rem",
-    padding: '6px 2px 2px 6px',
-  },
-  tableHead: {
-  	fontSize: "0.6rem",
-  	padding: '6px 2px 2px 6px',
-  	fontWeight: 'bold',
-  },
-});
 
 
 export default function CustomPaginationActionsTable(props) {
   let rows = props.rows;
 
-  const classes = useStyles2();
+
   const font = '0.5rem';
 
   const [page, setPage] = React.useState(0);
@@ -99,7 +94,7 @@ export default function CustomPaginationActionsTable(props) {
   };
 
   return (
-    <TableContainer component={Paper}>
+    <StyledTableContainer component={Paper}>
       <Table size="small" className={classes.table} aria-label="log table">
       <TableBody>
         <TableRow>
@@ -146,6 +141,6 @@ export default function CustomPaginationActionsTable(props) {
           </TableRow>
         </TableFooter>
       </Table>
-    </TableContainer>
+    </StyledTableContainer>
   );
 }

@@ -24,7 +24,7 @@ module.exports = {
         exclude: /node_modules/,
         options: {
           presets: ['@babel/react', '@babel/preset-env'],
-          plugins: ["@babel/plugin-proposal-class-properties"]
+          plugins: ["@babel/plugin-transform-class-properties"]
         }
       }
     ]

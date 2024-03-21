@@ -4,11 +4,11 @@
 FROM arm32v6/node:18-alpine
 
 # This is where the garage-pi code will be placed
-RUN mkdir /code
-WORKDIR /code
+RUN mkdir /app
+WORKDIR /app
 
 # Copy over everything into the container
-COPY . /code
+COPY . /app
 
 # Install
 RUN apk add --update bash

@@ -1,7 +1,7 @@
 'use strict';
 
 const JSONdb = require('simple-json-db');
-const db = new JSONdb('/code/databases/logs.json');
+const db = new JSONdb('./databases/logs.json');
 const crypto = require("crypto");
 
 const logsGet = function(req, res){
