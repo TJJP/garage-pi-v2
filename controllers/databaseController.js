@@ -12,8 +12,7 @@ function checkDatabases(){
 		});
 		var files = ['logs.json','notification.json','pins.json','timer.json','users.json'];
 		files.forEach(element => { 
-
-			const filemveo = fs.copyFile('./sample-databases/'+element, './databases/'+element, err => {
+			fs.copyFile('./sample-databases/'+element, './databases/'+element, err => {
 				console.error(err);
 				throw err;
 			});
