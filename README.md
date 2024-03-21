@@ -7,8 +7,10 @@ Originally based on this [howchoo](https://howchoo.com/g/yznmzmuxywu/how-to-cont
 ## Compatibility
 ### Raspberry Pi Hardware
 - [ ] Rasberry Pi 1 Model A/B/B+ (not compatible)
+- [x] Raspberry Pi Zero W
+- [x] Raspberry Pi Zero 2W
 - [x] Raspberry Pi 2 Model B 
-- [x] Raspberry Pi  2 Model B v1.2 
+- [x] Raspberry Pi 2 Model B v1.2 
 - [x] Raspberry Pi 3 Model B
 - [x] Rasberry Pi 3 Model B+
 - [x] Rasberry Pi 4 Model B
@@ -36,13 +38,13 @@ Links are to Amazon *(not affiliate links)*
    * [Wire Strippers](https://www.amazon.com/VISE-GRIP-Stripping-Cutter-8-Inch-2078309/dp/B000JNNWQ2) 
 
 ### Setup Raspberry Pi OS
-You can find instuctions on [How to set up your Raspberry Pi without a keyboard, monitor, or mouse](https://desertbot.io/blog/headless-raspberry-pi-3-bplus-ssh-wifi-setup).
+You can find instructions on [How to set up your Raspberry Pi without a keyboard, monitor, or mouse](https://desertbot.io/blog/headless-raspberry-pi-3-bplus-ssh-wifi-setup).
 
 ### Wiring
 You will need to be comfortable using wire strippers in order to install the hardware for this project. The relay and the 2 magnetic reed switches are much easier to connect to the Raspberry Pi if you cut your wires and use a butt connector to attach it to a female jumper wire.
 
 #### Garage Door Opener
-First we will connect the Raspberry Pi to the garage door opener. Find the correct connections for your garage door opener. You can find them by tracing the wires from your wall mounted button to the opener. See the picture below.
+First, we will connect the Raspberry Pi to the garage door opener. Find the correct connections for your garage door opener. You can find them by tracing the wires from your wall mounted button to the opener. See the picture below.
 
 ![garage door wires](https://raw.githubusercontent.com/TJJP/garage-pi-v3/master/assets/readme_pictures/garage-door-opener.jpg)
 
@@ -77,7 +79,7 @@ Attach wires from the garage door opener to your relay.
 #### Custom Pin Connections
 The open sensor, close sensor, and relay can be wired to the following physical pins:
  - 3, 5, 7, 8, 10, 11, 12, 13, 15, 16, 18, 19, 21, 22, 23, 24, 26, 29, 31, 32, 33, 35, 36, 37, 38, 40.
- - These are physical pins of the Raspberry Pi
+ - These are the physical pins of the Raspberry Pi
  - **Default Pins:**
    - Open Sensor - Pin 19
    - Close Sensor - Pin 13
@@ -86,24 +88,11 @@ The open sensor, close sensor, and relay can be wired to the following physical 
 #### Full Wire Diagram
 ![Wire Diagram](https://raw.githubusercontent.com/TJJP/garage-pi-v3/master/assets/readme_pictures/Diagram.png)
 
-### Setup DDNS Service
-**This is extremely dangerous. Only do this if you understand the risks involved.**
-1. Go to a DDNS service provider [Dynu.com](https://www.dynu.com) is recommended
-1. Create a dynamic DNS domain with the provider
-   - Make sure you link the domain to your IPv4 and/or IPv6 address [whatismyipaddress.com](https://whatismyipaddress.com/)
-1. This domain will be used to access your garage and during the installation process
-1. Make sure that if your IP address changes that dynu.com updates the DDNS record
-   - Follow the instructions here [https://www.dynu.com/DynamicDNS/IPUpdateClient/RaspberryPi-Dynamic-DNS](https://www.dynu.com/DynamicDNS/IPUpdateClient/RaspberryPi-Dynamic-DNS)
-
-### Port Forwarding
-**This will make your network visible to the public internet.**
-**Make sure you have correctly configured your router and any firewalls.**
-- [Access your Raspberry Pi over the internet](https://www.raspberrypi.org/documentation/remote-access/access-over-Internet/README.md)
-  - You'll need to find your routers manual to learn how to configure port fowarding to **Port 443 and Port 80** on your Pi.
-**You need to forward external ports 443 and 80 to internal ports 443 and 80 respectively**
+### Setup the to the world Service
+You should use a reverse proxy like `traefik` or `nginx` to make a secure web server. Do **NOT** run this to the public on `http` ONLY run on `https`. Without `https` it poses a large cybersecurity risk.
 
 ### Installing Software
-You have two options for install the Garage-Pi-v3 Software. It is recommended that you build the software from source. This will ensure that any small changes made to your raspberry pi's setup and OS are accounted for when the software is setup.
+You have two options for installing the Garage-Pi-v3 Software. It is recommended that you build the software from source. This will ensure that any small changes made to your raspberry pi's setup and OS are accounted for when the software is setup.
 
 #### Building Garage-Pi-v3 From Source (recommended but slower)
 1. Open up a terminal
@@ -121,6 +110,18 @@ You have two options for install the Garage-Pi-v3 Software. It is recommended th
    - ```sudo ./garage-pi-v3/scripts/build.sh --setup```
    - This may take some time. Be patient.
 
+#### Running Garage-Pi-v3 From dockerhub (fastest way to get started)
+1. Open up a terminal
+1. ssh into your Pi
+   - ```ssh pi@192.168.1.1```
+   - Use the IP address of your Pi
+   - default password is "raspberry"
+1. Install docker
+   - ```curl -sSL https://get.docker.com | sh```
+   - This will run the install script right from docker.com
+1. Download Docker image & run the image by running
+   - ```sudo docker run -v /etc/timezone:/etc/timezone --restart=always --device=/dev/mem:/dev/mem --name=garage-pi --privileged --publish 7119:7119 -d tjjp/garage-pi-v3:master```  
+
 #### Install Garage-Pi-v3 From Repository (faster)
 **Don't do this step if you installed Garage-Pi-v3 by Building from source**
 1. Open up a terminal
@@ -133,10 +134,10 @@ You have two options for install the Garage-Pi-v3 Software. It is recommended th
    
 ## First Time Use
 1. Open a web browser to the domain you setup
-   - You should notice that a http address should redirect to a https address
 1. Follow the onscreen instructions to create your first user
-1. After logging in, click the setting to add users, delete users, change your password, setup your Amazon Alexa or Google Assistant, adjust the logs, etc.
+1. After logging in, click the setting to add users, delete users, change your password, set up your Amazon Alexa or Google Assistant, adjust the logs, etc.
 
 ## Acknowledgements
-* Original Garage-Pi Created by Tyler Jones at Howchoo.com and on Github
+* Original Garage-Pi Created by Tyler Jones at Howchoo.com and on GitHub
+* Thanks kylejramstad for the original project
 * Favicon made by Freepik from [www.flaticon.com](www.flaticon.com) is licensed by CC 3.0 BY
