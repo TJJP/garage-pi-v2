@@ -4,8 +4,8 @@ const path = require('path');
 const fs = require('fs');
 
 function getScripts(){
-	var startPath = "/code/assets";
-	var filter = ".js"
+	var startPath = "./assets";
+	var filter = ".js";
     var results = [];
 
     if (!fs.existsSync(startPath)){

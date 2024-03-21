@@ -1,7 +1,7 @@
 #!/bin/sh
 # Script runs in docker container
 # Start at root of code
-cd /code
+cd /app
 
 # update repositories
 apk update
