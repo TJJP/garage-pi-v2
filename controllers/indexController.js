@@ -21,7 +21,7 @@ function getScripts(){
             //results = results.concat(findFilesInDir(filename,filter)); //recurse
         }
         else if (filename.indexOf(filter)>=0 && filename.slice(-2) == 'js') {
-            console.log('-- found: ',filename);
+            // console.log('-- found: ',filename);
             results.push(filename);
         }
     }
