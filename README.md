@@ -110,7 +110,7 @@ You have two options for installing the Garage-Pi-v3 Software. It is recommended
    - ```sudo ./garage-pi-v3/scripts/build.sh --setup```
    - This may take some time. Be patient.
 
-#### Running Garage-Pi-v3 From dockerhub (fastest way to get started)
+#### Running Garage-Pi-v3 directly dockerhub (fastest way to get started)
 1. Open up a terminal
 1. ssh into your Pi
    - ```ssh pi@192.168.1.1```
@@ -122,13 +122,16 @@ You have two options for installing the Garage-Pi-v3 Software. It is recommended
 1. Download Docker image & run the image by running
    - ```sudo docker run -v /etc/timezone:/etc/timezone --restart=always --device=/dev/mem:/dev/mem --name=garage-pi --privileged --publish 7119:7119 -d tjjp/garage-pi-v3:master```  
 
-#### Install Garage-Pi-v3 From Repository (faster)
+#### Install Garage-Pi-v3 From Repository script (faster)
 **Don't do this step if you installed Garage-Pi-v3 by Building from source**
 1. Open up a terminal
 1. ssh into your Pi
    - ```ssh pi@192.168.1.1```
    - Use the IP address of your Pi
    - default password is "raspberry"
+1. Install docker
+   - ```curl -sSL https://get.docker.com | sh```
+   - This will run the install script right from docker.com  
 1. Download Docker & Garage-Pi by running
    - ```bash <(curl -s https://raw.githubusercontent.com/TJJP/garage-pi-v3/master/scripts/download.sh)```
    
