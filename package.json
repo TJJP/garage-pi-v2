@@ -1,6 +1,6 @@
 {
   "name": "garage_pi",
-  "version": "3.0.7",
+  "version": "3.0.8",
   "description": "Web endpoint to manage garage-pi.",
   "author": "Kyle Ramstad",
   "co-author": "Tony Prebilic",
