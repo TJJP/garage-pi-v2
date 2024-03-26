@@ -10,8 +10,6 @@ apk update
 apk add sudo
 
 # Time settings
-sudo apk add curl
-sudo ln -snf /usr/share/zoneinfo/$(curl https://ipapi.co/timezone) /etc/localtime
 sudo apk add tzdata
 
 # install nano for crontab editing
